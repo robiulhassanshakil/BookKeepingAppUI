@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Setup
 1. Clone the repository to your local machine.
-2. Open the project in your preferred vs.
+2. Open the project in VSCode.
 3. Install all npm First . 
     ```
     npm install
