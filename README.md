@@ -10,10 +10,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     npm install
     ```
 4. Run .NET Back-End.
-
-5.RUN 
-```
-ng serve --port 0 --open
-```
+5. Run 
+   ```
+   ng serve --port 0 --open
+   ```
 
 
