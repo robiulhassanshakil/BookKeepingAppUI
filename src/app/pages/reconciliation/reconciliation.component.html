@@ -1,0 +1,123 @@
+
+    <nz-select
+    nzShowSearch
+    nzAllowClear
+    nzPlaceHolder="Select a year"
+    [(ngModel)]="selectedValue"
+    (ngModelChange)="changeYear()"
+  >
+    <nz-option *ngFor="let year of bookKeepingService.incomeYears" [nzLabel]="year" [nzValue]="year" ></nz-option>
+  </nz-select>
+  <br>
+  <br>
+
+      <h2>Year {{selectedValue}}</h2>
+  <nz-table #editRowTable nzBordered [nzData]="months" [nzShowPagination]="false" [nzNoResult]="' '"	>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th *ngFor="let month of months">{{ month }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+          <td>
+             Income 
+          </td>
+        <td *ngFor="let income of incomeData">
+          <div >
+            {{ income.income }}
+          </div>
+        </td>
+       
+      </tr>
+      <tr>
+          <td>
+             CIncome 
+          </td>
+        <td *ngFor="let cIncome of cIncomeData">
+          <div>
+            {{ cIncome.value }}
+          </div>
+        </td>
+       
+      </tr>
+      <tr  >
+          <td>
+              Cost 
+           </td>
+          <td *ngFor="let cost of costData">
+              <div>
+                {{ cost.cost }}
+              </div>
+            </td>
+      </tr>
+      <tr >
+          <td>
+             CCost
+          </td>
+        <td *ngFor="let cCost of cCostData">
+          <div>
+            {{ cCost.value }}
+          </div>
+        </td>
+       
+      </tr>
+      <tr >
+        <td>
+           Result
+        </td>
+        <td *ngFor="let r of result">
+            <div>
+              {{ r.value }}
+            </div>
+          </td>
+    </tr>
+    <tr>
+      <td colspan="13">Reconciliation</td>
+    </tr>
+
+    <tr  class="editable-row" *ngFor="let income of dynamicIncomes">
+      <td>{{income.name}}</td>
+      <td *ngFor="let month of income.incomes">
+        <div class="editable-cell" [hidden]="editId === month.id" (click)="startEdit(month.id)">
+          {{ month.income }}
+        </div>
+        <input [hidden]="editId !== month.id" type="number" nz-input [(ngModel)]="month.income" (blur)="stopEdit()" />
+      </td>
+    </tr>
+    <tr class="editable-row"  *ngFor="let cost of dynamicCosts">
+      <td>{{cost.name}}</td>
+      <td *ngFor="let month of cost.costs">
+        <div class="editable-cell" [hidden]="editId === month.id" (click)="startEdit(month.id)">
+          {{ month.cost }}
+        </div>
+        <input [hidden]="editId !== month.id" type="number" nz-input [(ngModel)]="month.cost" (blur)="stopEdit()" />
+      </td>
+    </tr>
+    <tr>
+      <td>Reconciliation Result</td>
+      <td *ngFor="let r of rResult">
+          <div>
+            {{ r.value }}
+          </div>
+        </td>
+    </tr>
+    <tr>
+      <td>Final Result</td>
+      <td *ngFor="let f of finalResult">
+          <div>
+            {{ f.value }}
+          </div>
+        </td>
+    </tr>
+    <tr>
+      <td>Cumulative Final Result</td>
+      <td *ngFor="let f of cFinalResult">
+          <div>
+            {{ f.value }}
+          </div>
+        </td>
+    </tr>
+    </tbody>
+  </nz-table>
